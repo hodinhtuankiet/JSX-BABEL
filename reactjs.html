@@ -5,8 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 </head>
 <body>
     <h1>First day, with reactjs</h1>
+    <script>
+        //DOM
+        const ulDom = document.createElement('ul')
+        ulDom.id = 'ul-id'
+        const liDom1 = document.createElement('li')
+        liDom1.innerText = 'Javascript'
+        const liDom2= document.createElement('li')
+        liDom2.innerText = 'Reactjs'
+
+        ulDom.appendChild(liDom1)
+        ulDom.appendChild(liDom2)
+
+        document.body.appendChild(ulDom)
+
+        // ReactJS 
+        const ulReact = React.createElement(
+            'ul',
+            {
+            id : 'ul-id'
+            },
+            React.createElement('li',null,'Javascript'),
+            React.createElement('li',null,'Reactjs')
+        )
+        console.log(ulDom)
+        console.log(ulReact)
+    </script>
 </body>
 </html>
