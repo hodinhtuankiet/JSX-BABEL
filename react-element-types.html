@@ -15,13 +15,14 @@
 
     <script type="text/babel">
 
-        function PostItem(){
+        function PostItem(props) {
+            console.log(props.title);
             return (
                 <div className="post-item">
                 <img src="" alt="pic"></img>
-                <h2 className="post-title">C### - Post</h2>
-                <p className="post-desc">You know about langue C##</p>
-                <p className="post-published">You know about langue C##</p>
+                <h2 className="post-title">{props.title}</h2>
+                <p className="post-desc">{props.desc}</p>
+                <p className="post-published">{props.published}</p>
                 </div>
             )
         }
@@ -29,10 +30,26 @@
         function App(){
             return (
                 <div className="app">
-                   <PostItem/>
-                   <PostItem/>
-                   <PostItem/>
+                   <PostItem
+                   picture="http://localhost:8080/lol"
+                    title="1.C# - Post"
+                    desc="You know about langue C#"
+                    published="Now published the movie lalalalalalalal  "
+                   />
+                   <PostItem
+                   picture="http://localhost:8080/lol"
+                    title="2.C# - Post"
+                    desc="You know about langue C#"
+                    published="Now published the movie lalalalalalalal  "
+                   />
+                   <PostItem
+                   picture="http://localhost:8080/lol"
+                    title="3.C# - Post"
+                    desc="You know about langue C#"
+                    published="Now published the movie lalalalalalalal  "
+                   />
                 </div>
+                
             )
         }
         ReactDOM.render(<App/>,document.getElementById('root'))
