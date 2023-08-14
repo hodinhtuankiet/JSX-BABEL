@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <h1>5th with reactjs</h1>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const course = [
+        {
+          id: 2,
+          title: "Welcome to my channel",
+          description: "ạksdfasncueadscnasjkdfsadkfsdaf",
+          pic: "http://localhost2/images/2đ",
+        },
+        {
+          id: 3,
+          title: "Welcome to my channel",
+          description: "ạksdfasncueadscnasjkdfsadkfsdaf",
+          pic: "http://localhost2/images/2đ",
+        },
+        {
+          id: 4,
+          title: "Welcome to my channel",
+          description: "ạksdfasncueadscnasjkdfsadkfsdaf",
+          pic: "http://localhost2/images/2đ",
+        },
+        {
+          id: 5,
+          title: "Welcome to my channel",
+          description: "ạksdfasncueadscnasjkdfsadkfsdaf",
+          pic: "http://localhost2/images/2đ",
+        },
+      ];
+
+      const CourseItem = (props) => {
+        return (
+          <div>
+            <h2>{props.id}</h2>
+            <p>{props.title}</p>
+            <img src={props.description} alt="" />
+            <p>{props.pic}</p>
+          </div>
+        );
+      };
+
+      function App() {
+        return (
+          <div id="wrapper">
+            {course.map((course) => (
+              <CourseItem
+                key={course.id}
+                id={course.id}
+                title={course.title}
+                description={course.description}
+                pic={course.pic}
+              />
+            ))}
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
