@@ -47,27 +47,28 @@
         },
       ];
 
-      const CourseItem = (props) => {
+      const CourseItem = ({ course, onClick }) => {
         return (
           <div>
-            <h2>{props.id}</h2>
-            <p>{props.title}</p>
-            <img src={props.description} alt="" />
-            <p>{props.pic}</p>
+            <h2 onClick={() => onClick(course)}>{course.id}</h2>
+            <p>{course.title}</p>
+            <img src={course.description} alt="" />
+            <p>{course.pic}</p>
           </div>
         );
       };
 
       function App() {
+        const handleClick = (course) => {
+          console.log(course.title);
+        };
         return (
           <div id="wrapper">
             {course.map((course) => (
               <CourseItem
                 key={course.id}
-                id={course.id}
-                title={course.title}
-                description={course.description}
-                pic={course.pic}
+                course={course}
+                onClick={handleClick}
               />
             ))}
           </div>
