@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <h1>5th with reactjs</h1>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function Button({ titles, href, onClick }) {
+        let Component = "button";
+        const props = {};
+        if (href) {
+          Component = "a";
+          props.href = href;
+        }
+        if (onClick) {
+          props.onClick = onClick;
+        }
+        return <Component {...props}>{titles}</Component>;
+      }
+      function App() {
+        return (
+          <div>
+            <Button
+              titles="Click here"
+              href="https://www.youtube.com/watch?v=5SU6P-cqoJw&list=PL_-VfJajZj0UXjlKfBwFX73usByw3Ph9Q&index=19"
+              onClick={() => {
+                console.log(Math.random);
+              }}
+            />
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
