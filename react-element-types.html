@@ -1,59 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Third day, with reactjs</h1>
 
     <div id="root"></div>
 
     <script type="text/babel">
+      function PostItem(props) {
+        console.log(props.title);
+        props.callback(Math.random());
+        return (
+          <div className="post-item">
+            <img src="" alt="pic"></img>
+            <h2 className="post-title">{props.title}</h2>
+            <p className="post-desc">{props.desc}</p>
+            <p className="post-published">{props.published}</p>
+          </div>
+        );
+      }
+      courseItem = [];
 
-        function PostItem(props) {
-            console.log(props.title);
-            return (
-                <div className="post-item">
-                <img src="" alt="pic"></img>
-                <h2 className="post-title">{props.title}</h2>
-                <p className="post-desc">{props.desc}</p>
-                <p className="post-published">{props.published}</p>
-                </div>
-            )
-        }
-        
-        function App(){
-            return (
-                <div className="app">
-                   <PostItem
-                   picture="http://localhost:8080/lol"
-                    title="1.C# - Post"
-                    desc="You know about langue C#"
-                    published="Now published the movie lalalalalalalal  "
-                   />
-                   <PostItem
-                   picture="http://localhost:8080/lol"
-                    title="2.C# - Post"
-                    desc="You know about langue C#"
-                    published="Now published the movie lalalalalalalal  "
-                   />
-                   <PostItem
-                   picture="http://localhost:8080/lol"
-                    title="3.C# - Post"
-                    desc="You know about langue C#"
-                    published="Now published the movie lalalalalalalal  "
-                   />
-                </div>
-                
-            )
-        }
-        ReactDOM.render(<App/>,document.getElementById('root'))
-        </script>
-
-</body>
+      function App() {
+        return (
+          <div className="app">
+            <PostItem
+              picture="http://localhost:8080/lol"
+              title="1.C# - Post"
+              desc="You know about langue C#"
+              published="Now published the movie lalalalalalalal  "
+              callback={(random) => {
+                console.log("random:" + random);
+              }}
+            />
+            <PostItem
+              picture="http://localhost:8080/lol"
+              title="2.C# - Post"
+              desc="You know about langue C#"
+              published="Now published the movie lalalalalalalal  "
+            />
+            <PostItem
+              picture="http://localhost:8080/lol"
+              title="3.C# - Post"
+              desc="You know about langue C#"
+              published="Now published the movie lalalalalalalal  "
+            />
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
 </html>

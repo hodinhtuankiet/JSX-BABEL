@@ -19,11 +19,11 @@
 
     <div id="root"></div>
     <script type="text/babel">
-      function Input({ label, ...inpurProps }) {
+      function Input({ label, ...inputProps }) {
         return (
           <div>
             <label>{label}</label>
-            <input {...inpurProps} />
+            <input {...inputProps} />
           </div>
         );
       }
@@ -32,8 +32,9 @@
           <div id="wrapper">
             <Input
               label="5th with react"
-              type="checkbox"
+              type="text"
               placeholder="Enter a label"
+              onFocus={() => console.log(Math.random)}
             />
           </div>
         );

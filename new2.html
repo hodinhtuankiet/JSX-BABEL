@@ -18,10 +18,16 @@
     <h1>5th with reactjs</h1>
 
     <div id="root"></div>
-
     <script type="text/babel">
+      function Button({ title }) {
+        return <button>{title}</button>;
+      }
       function App() {
-        return <div id="wrapper"></div>;
+        return (
+          <div>
+            <Button title="Xin chào" />
+          </div>
+        );
       }
 
       ReactDOM.render(<App />, document.getElementById("root"));
