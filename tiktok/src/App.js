@@ -1,26 +1,27 @@
 
 import { useState } from 'react'
 
-  const orders = [100,200,300]
 
 function App() {
-  const [info,setInfo] = useState({
-    name : 'orders',
-    age: 17,
-    address : '123 street Dinh Tien Hoan'
-  })
-  const handleUpdate = () => {
-    setInfo({
-      // add info
-    ...info,
-    bio: 'John',
-    })
-  }
+  const gifts = [
+    'CPU', 
+    'GPU', 
+    'RAM', 
+    'HDD', 
+    'CPU', 
+    'GPU',
+  ]
+  const [giftList, setGiftList] = useState()
+
+  const handleGift = () => {
+    const index = Math.floor(Math.random() * gifts.length)
+    setGiftList(gifts[index])
+    }
 
   return (
     <div className="App" style={{padding: 20}}>
-      <h1>{JSON.stringify(info)}</h1>
-      <button onClick={handleUpdate}>handleUpdate</button>
+      <h1>{giftList || 'No reward yet'}</h1>
+      <button onClick={handleGift}>Get rewarded</button>
     </div>
   );
 }
