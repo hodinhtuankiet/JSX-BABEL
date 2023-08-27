@@ -3,25 +3,27 @@ import { useState } from 'react'
 
 
 function App() {
-  const gifts = [
-    'CPU', 
-    'GPU', 
-    'RAM', 
-    'HDD', 
-    'CPU', 
-    'GPU',
-  ]
-  const [giftList, setGiftList] = useState()
+  
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
 
   const handleGift = () => {
-    const index = Math.floor(Math.random() * gifts.length)
-    setGiftList(gifts[index])
+    console.log({
+      name,email
+    })
     }
 
   return (
     <div className="App" style={{padding: 20}}>
-      <h1>{giftList || 'No reward yet'}</h1>
-      <button onClick={handleGift}>Get rewarded</button>
+      <input
+      value={name}
+      onChange={e=> setName(e.target.value)}
+      />
+      <input
+      value={email}
+      onChange={e=> setEmail(e.target.value)}
+      />
+      <button onClick={handleGift}>Send</button>
     </div>
   );
 }
