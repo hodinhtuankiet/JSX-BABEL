@@ -1,56 +1,39 @@
 
 import { useState } from 'react'
 
-const courses = [
-  {
-    id: 1,
-    name: 'Course1'
-  },
-  {
-    id: 2,
-    name: 'Course2'
-  },
-  {
-    id: 3,
-    name: 'Course3'
-  },
 
-]
 function App() {
-  const [checked,setCheck] = useState([])
+  // cause empty array , call variable
+  const storageJobs = JSON.parse(localStorage.getItem('job'))
+  // convert json to array
+  // JSON.parse(storageJobs)
+  // if storageJobs is empty string then return empty array
+  const [jobs,setJobs] = useState(storageJobs ?? [])
+  const [job,setJob] = useState('')
 
-  const handleCheck = (id) =>{
-    setCheck(prev =>{
-      const isChecked = checked.includes(id)
-      if(isChecked) {
-        return checked.filter(item => item !== id)
-      }else{
-        return [...prev,id]
-      }
-    })
-  }
+ 
   const handleSumit = () =>{
-    console.log({ ids: checked})
-  }
+    setJobs(prev => {
+      const newJobs = [...prev,job]
+      // save to localStorage
+      const jobsJson = JSON.stringify(newJobs)
+      localStorage.setItem('job',jobsJson)
+      return newJobs;
+    })
+    setJob('')
+  } 
   return (
-    <div className="App" style={{padding: 20}}>
-     {
-      courses.map((course) => {
-        return (
-          <div key={course.id}>
-            <input 
-            type='checkbox'
-            name='course'
-            checked={checked.includes(course.id)} 
-            onChange={()=> handleCheck(course.id)}
-            />{course.name}
-          </div>
-        )
-      }
-     )}
-      <button onClick={handleSumit} >Send</button>
+    <div className="App" style={{ padding: 20 }}>
+      <input value={job} onChange={e => setJob(e.target.value)}/>
+      <button onClick={handleSumit}>Send</button>
+      <ul>
+        {jobs.map((job, index) => (
+          <li key={index}>{job}</li>
+        ))}
+      </ul>
     </div>
   );
+  
 }
 
 export default App;
