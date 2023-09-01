@@ -7,29 +7,34 @@ import { useEffect, useState } from 'react'
 //  useEffect(callback,[])
 // -> chỉ gọi callback 1 lần sau khi component mounted , không bị re-render
 //  useEffect(callback,[deps])
+// -> callback will recall when the deps changes
 
 // ** callback luôn được gọi sau khi component mounted
-const tabs = ['posts','comment', 'albums']
+const tabs = ['posts','comments', 'albums']
 function Content(){
     const [title,setTitle] = useState('')
     const [posts,setPosts] = useState([])
     const [type,setType] = useState('posts')
-
-    console.log(type);
     
     useEffect(()=>{
-        fetch('https://jsonplaceholder.typicode.com/posts')
+        console.log('type changed');
+        fetch(`https://jsonplaceholder.typicode.com/${type}`)
         .then(res => res.json())
         .then((posts) => {
             setPosts(posts)
         })
-    },[])
+    },[type])
 
     return (
         <div>
         {tabs.map(tab => (
           <button
             key={tab}
+            // if tab active then css button 
+            style={type === tab ? {
+                color: '#fff',
+                backgroundColor: '#333',
+            }:{}}
             onClick={()=> setType(tab)}
             >{tab}</button>  
         ))}            
@@ -39,7 +44,7 @@ function Content(){
        />  
        <ul>
         {posts.map(post =>(
-        <li key={post.id}>{post.title}</li>
+        <li key={post.id}>{post.title || post.name}</li>
         ))}
         </ul>
         </div>
