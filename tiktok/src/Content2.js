@@ -10,26 +10,41 @@ import { useEffect, useState } from 'react'
 // -> callback will recall when the deps changes
 
 // ** callback luôn được gọi sau khi component mounted
+// ** cleanup function luôn được gọi trước khi component unmounted 
 const tabs = ['posts','comments', 'albums']
 function Content(){
     const [title,setTitle] = useState('')
     const [posts,setPosts] = useState([])
     const [type,setType] = useState('posts')
+    const [showGoToTop,setGoToTop] = useState(false)
     
-    useEffect(()=>{
-        console.log('type changed');
+    useEffect(()=>{       
         fetch(`https://jsonplaceholder.typicode.com/${type}`)
         .then(res => res.json())
         .then((posts) => {
             setPosts(posts)
         })
     },[type])
+    
     useEffect(() =>{
         const handleScroll = () => {
-            console.log('123');
+            if(window.scrollY >= 300){
+                // show
+                setGoToTop(true)
+            }else{
+                // hide
+                setGoToTop(false)
+            }
         }
         window.addEventListener('scroll',handleScroll)
-    })
+        console.log('addEventListener');
+        // clean up function , avoid memory leaks
+        return () => {
+        window.removeEventListener('scroll',handleScroll)
+        console.log('removeEventListener')
+        }
+    },[])
+
     return (
         <div>
         {tabs.map(tab => (
@@ -52,6 +67,15 @@ function Content(){
         <li key={post.id}>{post.title || post.name}</li>
         ))}
         </ul>
+        {showGoToTop && (
+            <button
+            style={{
+            position: 'fixed',
+            right: 20,
+            bottom: 20,
+            }}
+            >Go To Top</button>
+        )}
         </div>
     )
 }
